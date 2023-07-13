@@ -1,38 +1,115 @@
-.App {
-  text-align: center;
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.container {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: 1fr auto;
+  grid-template-areas: 
+    "image sidebar"
+    "slider sidebar";
+  height: 100vh;
+  width: 100vw;
+  background: rgb(236, 236, 236);
+
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.main-image {
+  grid-area: image;
+  background-image: url('https://source.unsplash.com/cssvEZacHvQ');
+  width: 100%;
+  height: 100%;
+  background-position: top center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-top: 1rem;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  background: hsl(204, 70%, 73%);
+  border-left: 1px solid hsl(204, 70%, 53%);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: stretch;
 }
 
-.App-link {
-  color: #61dafb;
+.sidebar-item {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background: hsl(204, 70%, 73%);
+  padding: 1rem;
+  position: relative;
+  transition: background 150ms;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar-item:hover, .sidebar-item:focus {
+  background: hsl(204, 70%, 83%);
 }
+
+.sidebar-item.active {
+  background: hsl(204, 70%, 55%);
+}
+
+.sidebar-item::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  bottom: 0;
+  height: 1px;
+  background: hsl(204, 70%, 48%);
+}
+
+.sidebar-item:last-child::after {
+  display: none;
+}
+
+.slider-container {
+  grid-area: slider;
+  margin-top: 2rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.slider-container .value {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  font-family: sans-serif;
+}
+
+.slider {
+  -webkit-appearance: none;
+  background: #fff;
+  border-radius: 7px;
+  border: 2px solid hsl(204, 70%, 53%);
+  width: 100%;
+  cursor: pointer;
+  height: 15px;
+  outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 3;
+  background: #fff;
+  border-radius: 50%;
+  border: 4px solid #3498db;
+}
+
+
+
+
+
